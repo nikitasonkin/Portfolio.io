@@ -188,15 +188,33 @@ input, select, textarea {
 			text-decoration: none;
 		}
 
-		h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
-			border-bottom: solid 1px #ffffff;
-			width: -moz-max-content;
-			width: -webkit-max-content;
-			width: -ms-max-content;
-			width: max-content;
-			padding-bottom: 0.5rem;
-			margin: 0 0 2rem 0;
-		}
+		/* --- עיצוב מותאם אישית: כותרות Major בדפי תוכן --- */
+h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
+    border-bottom: solid 1px #ffffff;
+    width: 100%; /* וודא שהכותרת תופסת 100% מהרוחב של אלמנט ההורה */
+    padding-bottom: 0.5rem;
+    margin: 0 0 2rem 0;
+    text-align: center; /* מרכז את הטקסט בתוך הכותרת */
+    box-sizing: border-box; /* וודא שפאדינג לא יגרום לחריגה */
+}
+
+/* התאמות ספציפיות לכותרות בתוך Articles, אם יש צורך בריווח נוסף */
+/* זה יכול לעזור אם הכותרות נדבקות לצדדים במסכים מסוימים */
+#main article h2.major {
+    padding-left: 1rem; /* רווח פנימי שמאלי */
+    padding-right: 1rem; /* רווח פנימי ימני */
+    /* גודל פונט - וודא שהוא מתאים לצרכיך. ייתכן שתרצה להתאים אותו. */
+    /* font-size: 2.25rem; */ /* דוגמה, התאם לפי הצורך */
+}
+
+/* רספונסיביות עבור כותרות Major במסכים קטנים יותר */
+@media screen and (max-width: 736px) {
+    #main article h2.major {
+        font-size: 1.8rem; /* הקטן גודל פונט במסכים ניידים */
+        padding-left: 0.5rem; /* צמצם פאדינג צידי */
+        padding-right: 0.5rem;
+    }
+}
 
 	h1 {
 		font-size: 2.25rem;
@@ -738,15 +756,18 @@ input, select, textarea {
 			padding-left: 0.25em;
 		}
 
-	ul {
-		list-style: disc;
-		margin: 0 0 2rem 0;
-		padding-left: 1em;
-	}
+	/* --- עיצוב מותאם אישית: רשימות כלליות (ul) --- */
+ul {
+    list-style: disc;
+    margin: 0 0 2rem 0;
+    padding-left: 1.25em; /* קצת יותר הזחה לשיפור קריאות */
+    color: rgba(255, 255, 255, 0.75); /* צבע טקסט טיפה יותר בהיר, משתלב טוב יותר */
+}
 
-		ul li {
-			padding-left: 0.5em;
-		}
+ul li {
+    padding-left: 0.5em;
+    margin-bottom: 0.5em; /* הוסף רווח קטן בין פריטי רשימה */
+}
 
 		ul.alt {
 			list-style: none;
@@ -779,21 +800,42 @@ input, select, textarea {
 
 /* Actions */
 
-	ul.actions {
-		display: -moz-flex;
-		display: -webkit-flex;
-		display: -ms-flex;
-		display: flex;
-		cursor: default;
-		list-style: none;
-		margin-left: -1rem;
-		padding-left: 0;
-	}
+	/* --- עיצוב מותאם אישית: כפתורים כלליים ב-ul.actions --- */
+ul.actions {
+    display: flex; /* שימוש ב-flex */
+    justify-content: center; /* מרכז את הפריטים אופקית */
+    flex-wrap: wrap; /* מאפשר גלישת שורה במסכים קטנים */
+    cursor: default;
+    list-style: none;
+    margin-left: 0; /* שינינו מ- -1rem ל-0 כדי למרכז נכון */
+    padding-left: 0;
+    margin-top: 1.5rem; /* רווח מעל קבוצת הכפתורים */
+    margin-bottom: 2.5rem; /* רווח מתחת לקבוצת הכפתורים */
+}
 
-		ul.actions li {
-			padding: 0 0 0 1rem;
-			vertical-align: middle;
-		}
+ul.actions li {
+    padding: 0 0.75em; /* רווח נעים בין הכפתורים */
+    vertical-align: middle;
+}
+
+/* התאמות נוספות לכפתורים בדף הראשי בלבד */
+#header .content .inner ul.actions {
+    margin-top: 3em; /* אולי קצת יותר רווח מדף הבית */
+    margin-bottom: 0;
+}
+
+/* אם יש כפתורים בודדים, ניתן להגדיר להם רוחב מלא במסכים קטנים */
+@media screen and (max-width: 480px) {
+    ul.actions li {
+        padding: 0.5em 0; /* רווח אנכי עבור כפתורים בעמודות */
+        width: 100%;
+        text-align: center;
+    }
+
+    ul.actions li .button {
+        width: 100%; /* וודא שהכפתור ממלא את הרוחב בתוך ה-li */
+    }
+}
 
 		ul.actions.special {
 			-moz-justify-content: center;
