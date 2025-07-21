@@ -69,6 +69,6 @@ A global analytics pipeline examining well-being indicators:
 - Interactive visualizations with Matplotlib, seaborn, and Plotly  
 
 ## Contact
-- **Email:** nikita.sonkin@example.com  
+- **Email:** nikita.sonkin@gmail.com  
 - **LinkedIn:** https://www.linkedin.com/in/nikita-sonkin/  
 - **GitHub:** https://github.com/nikitasonkin  
