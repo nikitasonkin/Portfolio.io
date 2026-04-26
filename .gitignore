@@ -1,0 +1,23 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local
+.env
+*.log
+
+# Audit output
+.audit/
+
+# Placeholders
+PLACE_*_HERE.txt
+
+# Temp
+NikitaPortfolio/
