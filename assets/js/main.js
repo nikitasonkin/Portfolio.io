@@ -392,7 +392,7 @@
   /* ------------------------------------------------------------------
      11. Sound effects (Web Audio API)
      ------------------------------------------------------------------ */
-  var soundEnabled = false;
+  var soundEnabled = true;
   var audioCtx = null;
 
   function initAudio() {
@@ -424,6 +424,8 @@
     var btn = document.getElementById('sound-toggle');
     if (!btn) return;
 
+    btn.classList.add('active');
+
     btn.addEventListener('click', function () {
       initAudio();
       soundEnabled = !soundEnabled;
@@ -432,14 +434,15 @@
       if (soundEnabled) playBeep(600, 0.1);
     });
 
-    // Add click sounds to interactive elements
+    // Init audio on first interaction & add click sounds
     document.addEventListener('click', function (e) {
+      initAudio();
       if (!soundEnabled) return;
       var target = e.target;
       if (target.matches('.cta, .tag, .link-tag, .nav-links a, button')) {
         playClick();
       }
-    });
+    }, { once: false });
   }
 
   /* ------------------------------------------------------------------
