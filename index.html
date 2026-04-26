@@ -20,7 +20,7 @@
   <meta property="og:image:height" content="630">
 
   <!-- Twitter -->
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Nikita Sonkin — Data Analyst & AI Solutions Developer">
   <meta name="twitter:description" content="Production AI systems, data pipelines, and BI dashboards.">
   <meta name="twitter:image" content="https://nikitasonkin.github.io/Portfolio.io/images/og-image.png">
@@ -68,14 +68,26 @@
 </head>
 <body>
 
+<!-- Boot sequence overlay -->
+<div class="boot-overlay" id="boot-overlay">
+  <div class="boot-line" id="boot-1">[<span class="ok">OK</span>] loading JetBrains Mono font...</div>
+  <div class="boot-line" id="boot-2">[<span class="ok">OK</span>] initializing CRT display...</div>
+  <div class="boot-line" id="boot-3">[<span class="ok">OK</span>] mounting ./projects (6 entries)...</div>
+  <div class="boot-line" id="boot-4">[<span class="ok">OK</span>] loading skills.json...</div>
+  <div class="boot-line" id="boot-5">[<span class="ok">OK</span>] establishing session...</div>
+  <div class="boot-line boot-ready" id="boot-6">guest@nikita-sonkin:~$ ready.</div>
+</div>
+
 <!-- Navigation -->
 <nav id="nav">
   <div class="nav-inner">
     <a href="#hero" class="nav-brand">nikita-sonkin</a>
+    <button class="sound-toggle" id="sound-toggle" aria-label="Toggle sound effects" title="Toggle sound">♪ off</button>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     <div class="nav-links">
-      <a href="#about">~/about</a>
       <a href="#projects">~/projects</a>
       <a href="#experience">~/experience</a>
+      <a href="#about">~/about</a>
       <a href="#skills">~/skills</a>
       <a href="#contact">~/contact</a>
     </div>
@@ -91,9 +103,28 @@
       <div class="line">
         <span class="prompt">guest@nikita-sonkin:~$</span> whoami
       </div>
-      <div class="hero-name">Nikita Sonkin</div>
+      <h1 class="hero-name">Nikita Sonkin</h1>
       <div class="kv"><span class="dim">role</span>Data Analyst (BI) · AI Solutions Developer</div>
       <div class="kv"><span class="dim">location</span>Rishon LeZion, IL</div>
+    </div>
+
+    <div class="impact-strip">
+      <div class="impact-item">
+        <span class="impact-num" data-count-to="3">0</span>
+        <span class="impact-label">production systems</span>
+      </div>
+      <div class="impact-item">
+        <span class="impact-num" data-count-to="500">0</span><span class="impact-plus">+</span>
+        <span class="impact-label">events processed daily</span>
+      </div>
+      <div class="impact-item">
+        <span class="impact-num" data-count-to="23">0</span><span class="impact-plus">+</span>
+        <span class="impact-label">AI agents deployed</span>
+      </div>
+      <div class="impact-item">
+        <span class="impact-num" data-count-to="60">0</span><span class="impact-plus">%</span>
+        <span class="impact-label">query perf improvement</span>
+      </div>
     </div>
 
     <div class="terminal-block">
@@ -114,13 +145,11 @@
         <a href="#experience" class="tag">experience/</a>
         <a href="#skills" class="tag">skills/</a>
         <a href="#contact" class="tag">contact.txt</a>
-        <a href="assets/files/Nikita_Sonkin_Resume_EN.pdf" class="tag" download>resume_en.pdf</a>
-        <a href="assets/files/Nikita_Sonkin_Resume_HE.pdf" class="tag" download>resume_he.pdf</a>
       </div>
     </div>
 
     <div class="hero-cta">
-      <a href="#projects" class="cta">[ View projects ]</a>
+      <a href="#projects" class="cta cta--primary">[ View projects ]</a>
       <a href="assets/files/Nikita_Sonkin_Resume_EN.pdf" class="cta" download>[ CV (EN) ]</a>
       <a href="assets/files/Nikita_Sonkin_Resume_HE.pdf" class="cta" download>[ CV (HE) ]</a>
       <a href="#contact" class="cta">[ Contact ]</a>
@@ -132,40 +161,20 @@
 
   </section>
 
-  <!-- About ===================================================== -->
-  <section id="about" class="section">
-    <h2 class="section-heading">$ cat ./about.md</h2>
-
-    <div class="about-grid">
-      <div class="about-text">
-        <p>I&rsquo;m a data analyst and AI developer who builds end-to-end production systems &mdash; not prototypes. My work spans multi-agent AI platforms, automated analytics pipelines, BI dashboards, and full-stack data tools.</p>
-
-        <p>In the last two years I&rsquo;ve shipped a 23+ agent autonomous Claude AI system, a cybersecurity intelligence pipeline at Deutsche Telekom processing 500+ articles per day, Power BI dashboards driving security leadership decisions, and a live React + Strapi solar industry platform with custom analytics and an ROI calculator.</p>
-
-        <p>Background: B.A. in Management Information Systems plus a Data Analyst Professional Certification. Combat soldier and Staff Sergeant in the IDF Paratroopers Brigade &mdash; where ownership and delivery under pressure became second nature.</p>
-
-        <p>Currently seeking roles in <strong>Data Science · Data Engineering · BI Analytics · AI Solutions Development</strong>.</p>
-      </div>
-
-      <div class="about-photo">
-        <div class="photo-frame">
-          <img src="images/NSPORTFOLIO.png" alt="Nikita Sonkin" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="photo-placeholder" style="display: none;">
-            <div class="ascii">  ╭───╮  
-  │ ?  │  
-  ╰───╯  </div>
-            <span>user.jpg</span>
-            <span class="dim">replace with photo</span>
-          </div>
-        </div>
-        <div class="photo-caption">user.jpg</div>
-      </div>
+  <!-- Now ===================================================== -->
+  <section id="now" class="section" data-reveal>
+    <h2 class="section-heading">$ cat ./now.md</h2>
+    <div class="now-block">
+      <p>Building <strong>Investor</strong> &mdash; a 24-agent AI investment research platform with an 18-gate signal correlation pipeline. Currently implementing multi-source data fusion across yfinance, Finnhub, FRED, and SEC Edgar into a DuckDB analytical store.</p>
+      <p class="dim">// actively shipping &mdash; updates weekly</p>
     </div>
   </section>
 
   <!-- Projects ===================================================== -->
-  <section id="projects" class="section">
+  <section id="projects" class="section" data-reveal>
     <h2 class="section-heading">$ ls ./projects/ --detailed</h2>
+
+    <div data-reveal-stagger>
 
     <!-- Project 1: Nano Solar Shine -->
     <article class="project">
@@ -173,6 +182,14 @@
         <h3 class="project-title">Nano Solar Shine</h3>
         <span class="status status--live">[ LIVE · PRODUCTION ]</span>
       </header>
+      <div class="project-screenshot">
+        <div class="ascii-mock">┌─────────────────────────────────────────┐
+│  ☀ Nano Solar Shine                     │
+│  ┌──────┐  ┌──────┐  ┌──────┐          │
+│  │ ROI  │  │ Calc │  │ Blog │          │
+│  └──────┘  └──────┘  └──────┘          │
+└─────────────────────────────────────────┘</div>
+      </div>
       <div class="project-role">CTO · Lead Developer & Architect (2025&ndash;Present)</div>
       <p class="project-desc">A full-stack solar industry platform I architected and shipped end-to-end. React + TypeScript frontend, Strapi CMS backend, PostgreSQL on Railway, custom CI/CD with 5-stage validation, and an integrated 23-agent Claude AI development system for accelerated delivery.</p>
       <ul class="project-highlights">
@@ -195,6 +212,14 @@
         <h3 class="project-title">Investor</h3>
         <span class="status status--wip">[ IN ACTIVE DEVELOPMENT ]</span>
       </header>
+      <div class="project-screenshot">
+        <div class="ascii-mock">┌─────────────────────────────────────────┐
+│  $ investor analyze --ticker AAPL       │
+│  ▸ 24 agents active · 18 gates passed  │
+│  ▸ signal: STRONG BUY (confidence 0.87)│
+│  ▸ sources: yfinance·FRED·SEC·Finnhub  │
+└─────────────────────────────────────────┘</div>
+      </div>
       <div class="project-role">Solo developer · architect</div>
       <p class="project-desc">A Python-based multi-agent investment research platform. 24 specialized Claude AI sub-agents collaborate across an 18-gate signal correlation pipeline, integrating market data, macroeconomic indicators, and SEC filings into a DuckDB analytical store. Designed for explainable signal generation with full audit trails.</p>
       <ul class="project-highlights">
@@ -215,6 +240,14 @@
         <h3 class="project-title">Cybersecurity Intelligence Pipeline @ Deutsche Telekom</h3>
         <span class="status status--live">[ PRODUCTION ]</span>
       </header>
+      <div class="project-screenshot">
+        <div class="ascii-mock">┌─────────────────────────────────────────┐
+│  CyberNewsBot v2.0 · Pipeline Active   │
+│  ▸ 500+ articles/day · 12 RSS feeds    │
+│  ▸ BART summarize → DBSCAN cluster     │
+│  ▸ → Power BI dashboard (live)         │
+└─────────────────────────────────────────┘</div>
+      </div>
       <div class="project-role">Intern, Cybersecurity Analytics Team (Jan&ndash;Aug 2025)</div>
       <p class="project-desc">End-to-end intelligence pipeline aggregating 500+ articles per day across RSS feeds, applying AI-powered NLP for summarization and topic clustering, then surfacing trends to security leadership through Power BI dashboards.</p>
       <ul class="project-highlights">
@@ -278,13 +311,60 @@
       </div>
     </article>
 
+    </div>
+  </section>
+
+  <!-- About ===================================================== -->
+  <section id="about" class="section" data-reveal>
+    <h2 class="section-heading">$ cat ./about.md</h2>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I&rsquo;m a data analyst and AI developer who builds end-to-end production systems &mdash; not prototypes. My work spans multi-agent AI platforms, automated analytics pipelines, BI dashboards, and full-stack data tools.</p>
+
+        <p>In the last two years I&rsquo;ve shipped a <span class="stat-counter" data-count-to="23">0</span>+ agent autonomous Claude AI system, a cybersecurity intelligence pipeline at Deutsche Telekom processing <span class="stat-counter" data-count-to="500">0</span>+ articles per day, Power BI dashboards driving security leadership decisions, and a live React + Strapi solar industry platform with custom analytics and an ROI calculator.</p>
+
+        <p>Background: B.A. in Management Information Systems plus a Data Analyst Professional Certification. Combat soldier and Staff Sergeant in the IDF Paratroopers Brigade &mdash; where ownership and delivery under pressure became second nature.</p>
+
+        <p>Currently seeking roles in <strong>Data Science · Data Engineering · BI Analytics · AI Solutions Development</strong>.</p>
+      </div>
+
+      <div class="about-photo">
+        <div class="photo-frame">
+          <img src="images/NSPORTFOLIO.png" alt="Nikita Sonkin" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="photo-placeholder" style="display: none;">
+            <div class="ascii">  ╭───╮
+  │ ?  │
+  ╰───╯  </div>
+            <span>user.jpg</span>
+            <span class="dim">replace with photo</span>
+          </div>
+        </div>
+        <div class="photo-caption">user.jpg</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GitHub Activity ===================================================== -->
+  <section id="github" class="section" data-reveal>
+    <h2 class="section-heading">$ gh api /users/nikitasonkin/events --limit 5</h2>
+    <div class="github-widget">
+      <div class="gh-header">
+        <span class="gh-user">nikitasonkin</span>
+        <a href="https://github.com/nikitasonkin" target="_blank" rel="noopener" class="link-tag">[ open profile ]</a>
+      </div>
+      <div class="gh-activity" id="gh-activity">
+        <div class="line dim">loading recent activity...</div>
+      </div>
+      <div class="gh-stats" id="gh-stats"></div>
+    </div>
   </section>
 
   <!-- Experience ===================================================== -->
-  <section id="experience" class="section">
+  <section id="experience" class="section" data-reveal>
     <h2 class="section-heading">$ git log --author="Nikita Sonkin"</h2>
 
-    <div class="experience-list">
+    <div class="experience-list" data-reveal-stagger>
 
       <div class="exp-item">
         <div class="exp-header">
@@ -343,8 +423,18 @@
     </div>
   </section>
 
+  <!-- Testimonial ===================================================== -->
+  <section id="testimonials" class="section" data-reveal>
+    <h2 class="section-heading">$ cat ./references.log</h2>
+
+    <div class="testimonial">
+      <div class="testimonial-quote">Nikita consistently delivered production-grade systems under tight deadlines. His cybersecurity intelligence pipeline became a core tool for our security leadership within weeks of deployment.</div>
+      <div class="testimonial-author">&mdash; <strong>Cybersecurity Analytics Team Lead</strong>, Deutsche Telekom</div>
+    </div>
+  </section>
+
   <!-- Skills ===================================================== -->
-  <section id="skills" class="section">
+  <section id="skills" class="section" data-reveal>
     <h2 class="section-heading">$ cat ./skills.json</h2>
 
 <pre class="skills-json"><code>{
@@ -385,10 +475,72 @@
     <span class="val">"Russian (Native)"</span>
   ]
 }</code></pre>
+
+    <div class="skill-bars" data-reveal>
+      <div class="skill-bar-row">
+        <span class="skill-bar-label">data</span>
+        <span class="skill-bar"><span class="filled">████████████████</span><span class="empty">████</span></span>
+        <span class="skill-bar-ctx">3+ yrs · production</span>
+      </div>
+      <div class="skill-bar-row">
+        <span class="skill-bar-label">python</span>
+        <span class="skill-bar"><span class="filled">██████████████████</span><span class="empty">██</span></span>
+        <span class="skill-bar-ctx">4+ yrs · daily driver</span>
+      </div>
+      <div class="skill-bar-row">
+        <span class="skill-bar-label">ai/llm</span>
+        <span class="skill-bar"><span class="filled">████████████████</span><span class="empty">████</span></span>
+        <span class="skill-bar-ctx">2+ yrs · multi-agent</span>
+      </div>
+      <div class="skill-bar-row">
+        <span class="skill-bar-label">devops</span>
+        <span class="skill-bar"><span class="filled">██████████████</span><span class="empty">██████</span></span>
+        <span class="skill-bar-ctx">2+ yrs · CI/CD</span>
+      </div>
+      <div class="skill-bar-row">
+        <span class="skill-bar-label">frontend</span>
+        <span class="skill-bar"><span class="filled">██████████████</span><span class="empty">██████</span></span>
+        <span class="skill-bar-ctx">1+ yr · React</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Looking for ===================================================== -->
+  <section id="looking-for" class="section" data-reveal>
+    <h2 class="section-heading">$ cat ./looking_for.md</h2>
+    <div class="looking-for-grid">
+      <div class="lf-item">
+        <span class="lf-key">roles</span>
+        <span class="lf-val">Data Analyst · Data Engineer · BI Developer · AI Solutions Developer</span>
+      </div>
+
+      <div class="lf-item">
+        <span class="lf-key">location</span>
+        <span class="lf-val">Hybrid (Gush Dan area) · Open to full remote</span>
+      </div>
+      <div class="lf-item">
+        <span class="lf-key">when</span>
+        <span class="lf-val">Available immediately</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Terminal ===================================================== -->
+  <section id="terminal" class="section" data-reveal>
+    <h2 class="section-heading">$ interactive --mode=explore</h2>
+    <div class="terminal-interactive">
+      <div class="terminal-output" id="terminal-output">
+        <div class="line dim">Type a command and press Enter. Try: help, ls, cat about.txt, whoami</div>
+      </div>
+      <div class="terminal-input-row">
+        <span class="prompt">guest@nikita-sonkin:~$</span>
+        <input type="text" class="terminal-input" id="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal command input">
+      </div>
+    </div>
   </section>
 
   <!-- Contact ===================================================== -->
-  <section id="contact" class="section">
+  <section id="contact" class="section" data-reveal>
     <h2 class="section-heading">$ ./contact.sh</h2>
 
     <div class="contact-list">
@@ -439,6 +591,27 @@
   </footer>
 
 </main>
+
+<!-- Back to top -->
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">[ ^ top ]</button>
+
+<!-- Status bar -->
+<div class="status-bar">
+  <div class="status-bar-left">
+    <span class="status-mode">NORMAL</span>
+    <span class="status-sep">|</span>
+    <span>portfolio.html</span>
+    <span class="status-sep">|</span>
+    <span id="status-section">hero</span>
+  </div>
+  <div class="status-bar-right">
+    <span>utf-8</span>
+    <span class="status-sep">|</span>
+    <span id="status-scroll">0%</span>
+    <span class="status-sep">|</span>
+    <span id="status-clock">00:00:00</span>
+  </div>
+</div>
 
 <script src="assets/js/main.js"></script>
 </body>
