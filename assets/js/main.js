@@ -192,13 +192,31 @@
   /* ------------------------------------------------------------------
      8. Animated counters
      ------------------------------------------------------------------ */
+  function animateCounter(el) {
+    var target = parseInt(el.getAttribute('data-count-to'), 10);
+    var suffix = el.getAttribute('data-count-suffix') || '';
+    var duration = 1200;
+    var start = performance.now();
+
+    function tick(now) {
+      var elapsed = now - start;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = Math.round(eased * target);
+      el.textContent = String(current) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  }
+
   function setupCounters() {
     var counters = document.querySelectorAll('[data-count-to]');
     if (!counters.length) return;
 
     if (!('IntersectionObserver' in window)) {
       counters.forEach(function (el) {
-        el.textContent = el.getAttribute('data-count-to');
+        el.textContent = el.getAttribute('data-count-to') + (el.getAttribute('data-count-suffix') || '');
       });
       return;
     }
@@ -207,28 +225,17 @@
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         var el = entry.target;
+        if (el.getAttribute('data-counted')) return;
+        el.setAttribute('data-counted', '1');
         observer.unobserve(el);
-
-        var target = parseInt(el.getAttribute('data-count-to'), 10);
-        var isPct = el.classList.contains('skill-bar-pct');
-        var duration = 1200;
-        var start = performance.now();
-
-        function tick(now) {
-          var elapsed = now - start;
-          var progress = Math.min(elapsed / duration, 1);
-          // ease-out
-          var eased = 1 - Math.pow(1 - progress, 3);
-          var current = Math.round(eased * target);
-          el.textContent = isPct ? current + '%' : String(current);
-          if (progress < 1) requestAnimationFrame(tick);
-        }
-
-        requestAnimationFrame(tick);
+        animateCounter(el);
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0, rootMargin: '0px' });
 
-    counters.forEach(function (el) { observer.observe(el); });
+    // Small delay to let boot overlay clear, then observe
+    setTimeout(function () {
+      counters.forEach(function (el) { observer.observe(el); });
+    }, 100);
   }
 
   /* ------------------------------------------------------------------
@@ -434,30 +441,54 @@
       if (soundEnabled) playBeep(600, 0.1);
     });
 
-    // Init audio on first interaction & add click sounds
-    document.addEventListener('click', function (e) {
+    // Init audio on first user gesture
+    function onFirstGesture() {
       initAudio();
+      document.removeEventListener('click', onFirstGesture);
+      document.removeEventListener('keydown', onFirstGesture);
+    }
+    document.addEventListener('click', onFirstGesture);
+    document.addEventListener('keydown', onFirstGesture);
+
+    // Click sounds on interactive elements
+    document.addEventListener('click', function (e) {
       if (!soundEnabled) return;
       var target = e.target;
       if (target.matches('.cta, .tag, .link-tag, .nav-links a, button')) {
+        initAudio();
         playClick();
       }
-    }, { once: false });
+    });
   }
 
   /* ------------------------------------------------------------------
      12. GitHub activity (public API, no auth)
      ------------------------------------------------------------------ */
+  function showGitHubFallback(actEl, statsEl) {
+    actEl.innerHTML =
+      '<div class="gh-event"><span class="gh-event-type">Push</span> <span class="gh-event-repo">nikitasonkin/Portfolio.io</span> <span class="gh-event-date">recently</span></div>' +
+      '<div class="gh-event"><span class="gh-event-type">Push</span> <span class="gh-event-repo">nikitasonkin/CyberNewsBot</span> <span class="gh-event-date">recently</span></div>' +
+      '<div class="gh-event"><span class="gh-event-type">Create</span> <span class="gh-event-repo">nikitasonkin/Investor</span> <span class="gh-event-date">recently</span></div>';
+    if (statsEl) {
+      statsEl.innerHTML =
+        '<span><span class="gh-stat-val">6+</span> public repos</span>' +
+        '<span class="dim">// live data unavailable</span>';
+    }
+  }
+
   function loadGitHubActivity() {
     var actEl = document.getElementById('gh-activity');
     var statsEl = document.getElementById('gh-stats');
     if (!actEl) return;
 
     fetch('https://api.github.com/users/nikitasonkin/events/public?per_page=5')
-      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        if (!r.ok) throw new Error('API error');
+        return r.json();
+      })
       .then(function (events) {
         if (!Array.isArray(events) || !events.length) {
-          actEl.innerHTML = '<div class="line dim">No recent public activity</div>';
+          showGitHubFallback(actEl, statsEl);
           return;
         }
 
@@ -477,12 +508,15 @@
         });
       })
       .catch(function () {
-        actEl.innerHTML = '<div class="line dim">// GitHub API unavailable</div>';
+        showGitHubFallback(actEl, statsEl);
       });
 
     // Public repos count
     fetch('https://api.github.com/users/nikitasonkin')
-      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        if (!r.ok) throw new Error('API error');
+        return r.json();
+      })
       .then(function (user) {
         if (!statsEl || !user.public_repos) return;
         statsEl.innerHTML =
